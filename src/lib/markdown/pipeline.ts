@@ -95,14 +95,15 @@ export async function parseMarkdown(raw: string): Promise<ParsedMarkdown> {
   return { frontmatter, html, headings }
 }
 
-// Cache for parsed markdown
+// Cache for parsed markdown — key includes content fingerprint to prevent race conditions
 const cache = new Map<string, ParsedMarkdown>()
 
 export async function parseMarkdownCached(key: string, raw: string): Promise<ParsedMarkdown> {
-  if (cache.has(key)) {
-    return cache.get(key)!
+  const cacheKey = `${key}:${raw.length}`
+  if (cache.has(cacheKey)) {
+    return cache.get(cacheKey)!
   }
   const parsed = await parseMarkdown(raw)
-  cache.set(key, parsed)
+  cache.set(cacheKey, parsed)
   return parsed
 }

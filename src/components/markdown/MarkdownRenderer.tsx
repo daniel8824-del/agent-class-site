@@ -18,6 +18,7 @@ export function MarkdownRenderer({ content, slug, onHeadings }: MarkdownRenderer
   const [error, setError] = useState<string>('')
 
   useEffect(() => {
+    if (!content) return // Skip parsing when content is empty (during chapter transitions)
     let cancelled = false
     parseMarkdownCached(slug, content)
       .then((result) => {
@@ -68,6 +69,27 @@ function postProcessHtml(html: string): string {
   )
   processed = processed.replace(/<\/font>/gi, '</span>')
 
+  // Remove Obsidian hash tag lines (e.g. "#에이전트 #Agent #RAG")
+  processed = processed.replace(
+    /<p>\s*(#\S+\s*)+<\/p>/g,
+    ''
+  )
+
+  // Convert PDF <img> tags to download links
+  processed = processed.replace(
+    /<img\s+[^>]*src="([^"]*\.pdf)"[^>]*\/?>/gi,
+    (_match, src) => {
+      const filename = decodeURIComponent(src.split('/').pop() || 'file.pdf')
+      return `<a href="${src}" download="${filename}" class="pdf-download-link">${filename} 다운로드</a>`
+    }
+  )
+
+  // Add referrerpolicy to all img tags for external image support
+  processed = processed.replace(
+    /<img(\s)/gi,
+    '<img referrerpolicy="no-referrer"$1'
+  )
+
   // Convert [[Note Name]] or [[Note|Display]] links that survived HTML processing
   processed = processed.replace(
     /\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/g,
@@ -97,16 +119,19 @@ function RenderedContent({ html }: { html: string }) {
   const segments = useMemo(() => splitIntoSegments(html), [html])
 
   return (
-    <div className="prose prose-lg dark:prose-invert max-w-none
+    <div className="prose prose-lg dark:prose-invert max-w-none leading-[1.5]
       prose-headings:scroll-mt-20
-      prose-h2:text-2xl prose-h2:font-bold prose-h2:mt-12 prose-h2:mb-4
-      prose-h3:text-xl prose-h3:font-semibold prose-h3:mt-8 prose-h3:mb-3
-      prose-h4:text-lg prose-h4:font-semibold prose-h4:mt-6 prose-h4:mb-2
-      prose-p:leading-relaxed prose-p:mb-4
+      prose-h2:text-2xl prose-h2:font-bold prose-h2:mt-6 prose-h2:mb-2
+      prose-h3:text-xl prose-h3:font-semibold prose-h3:mt-5 prose-h3:mb-1.5
+      prose-h4:text-lg prose-h4:font-semibold prose-h4:mt-3 prose-h4:mb-1
+      prose-p:leading-normal prose-p:mb-2
+      prose-li:leading-normal
       prose-a:text-primary prose-a:no-underline hover:prose-a:underline
       prose-code:before:hidden prose-code:after:hidden
-      prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:bg-muted prose-code:text-sm
-      prose-img:rounded-lg prose-img:shadow-md
+      prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm
+      prose-code:bg-black/[0.06] dark:prose-code:bg-white/[0.06]
+      prose-pre:bg-[#0d1117] prose-pre:border prose-pre:border-border
+      prose-img:rounded-lg prose-img:shadow-md prose-img:mx-0
       prose-table:overflow-x-auto
       prose-li:marker:text-muted-foreground
     ">
@@ -131,9 +156,9 @@ function splitIntoSegments(html: string): Segment[] {
   let remaining = html
 
   while (remaining.length > 0) {
-    // Find code blocks: <pre><code class="language-xxx">...</code></pre>
+    // Find code blocks: <pre><code class="language-xxx">...</code></pre> OR <pre><code>...</code></pre>
     const codeMatch = remaining.match(
-      /<pre><code\s+class="language-(\w+)">([\s\S]*?)<\/code><\/pre>/
+      /<pre><code(?:\s+class="language-(\w+)")?\s*>([\s\S]*?)<\/code><\/pre>/
     )
 
     // Find callout blocks
@@ -185,8 +210,8 @@ function splitIntoSegments(html: string): Segment[] {
     const m = firstMatch.match
     switch (firstMatch.type) {
       case 'code': {
-        const lang = m[1]
-        const code = decodeHtmlEntities(m[2])
+        const lang = m[1] || 'markdown'
+        const code = decodeHtmlEntities(m[2]).trim()
         if (lang === 'mermaid') {
           segments.push({ type: 'mermaid', code })
         } else {
@@ -206,12 +231,12 @@ function splitIntoSegments(html: string): Segment[] {
         break
       }
       case 'youtube': {
-        segments.push({ type: 'youtube', src: m[1] })
+        segments.push({ type: 'youtube', src: decodeHtmlEntities(m[1]) })
         remaining = remaining.slice(firstMatch.index + m[0].length)
         break
       }
       case 'image': {
-        segments.push({ type: 'image', src: m[1], alt: m[2] })
+        segments.push({ type: 'image', src: decodeHtmlEntities(m[1]), alt: decodeHtmlEntities(m[2]) })
         remaining = remaining.slice(firstMatch.index + m[0].length)
         break
       }
@@ -227,6 +252,18 @@ function decodeHtmlEntities(text: string): string {
   return textarea.value
 }
 
+// Process callout inner HTML to extract code blocks (so they get CodeBlock with copy button)
+function CalloutContent({ html }: { html: string }) {
+  const segments = useMemo(() => splitIntoSegments(html), [html])
+  return (
+    <>
+      {segments.map((seg, i) => (
+        <SegmentRenderer key={i} segment={seg} />
+      ))}
+    </>
+  )
+}
+
 function SegmentRenderer({ segment }: { segment: Segment }) {
   switch (segment.type) {
     case 'code':
@@ -234,7 +271,7 @@ function SegmentRenderer({ segment }: { segment: Segment }) {
     case 'callout':
       return (
         <CalloutBlock type={segment.calloutType} title={segment.title}>
-          <div dangerouslySetInnerHTML={{ __html: segment.content }} />
+          <CalloutContent html={segment.content} />
         </CalloutBlock>
       )
     case 'mermaid':
@@ -242,6 +279,14 @@ function SegmentRenderer({ segment }: { segment: Segment }) {
     case 'youtube':
       return <YouTubeEmbed src={segment.src} />
     case 'image':
+      if (/\.pdf$/i.test(segment.src)) {
+        const filename = decodeURIComponent(segment.src.split('/').pop() || 'file.pdf')
+        return (
+          <a href={segment.src} download={filename} className="pdf-download-link my-6 block w-fit">
+            {filename} 다운로드
+          </a>
+        )
+      }
       return <ObsidianImage src={segment.src} alt={segment.alt} />
     case 'showcase-html':
       return <HtmlBlock html={segment.content} />

@@ -10,13 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mantine/carousel": "^8.3.14",
-    "@mantine/code-highlight": "^8.3.14",
-    "@mantine/core": "^8.3.14",
-    "@mantine/hooks": "^8.3.14",
-    "@mantine/notifications": "^8.3.14",
-    "@mantine/spotlight": "^8.3.14",
     "@radix-ui/react-visually-hidden": "^1.2.4",
+    "@tabler/icons-react": "^3.36.1",
     "@tailwindcss/typography": "^0.5.19",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -28,6 +23,7 @@
     "hast-util-to-jsx-runtime": "^2.3.6",
     "lucide-react": "^0.563.0",
     "mermaid": "^11.12.2",
+    "motion": "^12.33.0",
     "radix-ui": "^1.4.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

@@ -26,6 +26,7 @@ export function ImageLightbox({ src, alt, open, onClose }: ImageLightboxProps) {
           <img
             src={src}
             alt={alt}
+            referrerPolicy="no-referrer"
             className="max-w-full max-h-[90vh] object-contain"
           />
         </div>

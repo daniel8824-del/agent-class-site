@@ -611,9 +611,9 @@ tags:
 >[!warning] 나쁜 도구 설명 예시
 >```json
 >{
-  "name": "search",
-  "description": "검색"
-  }
+>  "name": "search",
+>  "description": "검색"
+>}
 >```
 >```
 >→ AI가 언제, 어떻게 사용해야 할지 판단 불가
@@ -622,9 +622,9 @@ tags:
 >[!summary] 좋은 도구 설명 예시
 >```json
 >{
-  "name": "search_database",
-  "description": "MySQL 데이터베이스에서 고객 정보를 검색합니다. 이름, 이메일, 전화번호로 검색 가능하며, 부분 일치를 지원합니다. 최대 100개 결과 반환."
-  }
+>  "name": "search_database",
+>  "description": "MySQL 데이터베이스에서 고객 정보를 검색합니다. 이름, 이메일, 전화번호로 검색 가능하며, 부분 일치를 지원합니다. 최대 100개 결과 반환."
+>}
 >```
 
 >[!danger] Tool Description 입력

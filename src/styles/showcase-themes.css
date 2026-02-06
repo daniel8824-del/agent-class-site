@@ -1,0 +1,41 @@
+[data-showcase="smart-assistant"] {
+  --showcase-primary: #7c3aed;
+  --showcase-primary-light: #a78bfa;
+  --showcase-gradient: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+  --showcase-accent-bg: rgba(124, 58, 237, 0.08);
+}
+
+[data-showcase="stock-analysis"] {
+  --showcase-primary: #D4AF37;
+  --showcase-primary-light: #F4C430;
+  --showcase-gradient: linear-gradient(135deg, #D4AF37 0%, #F4C430 100%);
+  --showcase-accent-bg: rgba(212, 175, 55, 0.08);
+}
+
+[data-showcase="business-solution"] {
+  --showcase-primary: #3B82F6;
+  --showcase-primary-light: #60A5FA;
+  --showcase-gradient: linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%);
+  --showcase-accent-bg: rgba(59, 130, 246, 0.08);
+}
+
+[data-showcase="google-calendar"] {
+  --showcase-primary: #34A853;
+  --showcase-primary-light: #4ADE80;
+  --showcase-gradient: linear-gradient(135deg, #4285F4 0%, #34A853 50%, #FBBC04 100%);
+  --showcase-accent-bg: rgba(52, 168, 83, 0.08);
+}
+
+[data-showcase="inventory-management"] {
+  --showcase-primary: #F59E0B;
+  --showcase-primary-light: #FBBF24;
+  --showcase-gradient: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+  --showcase-accent-bg: rgba(245, 158, 11, 0.08);
+}
+
+[data-showcase="disaster-status"] {
+  --showcase-primary: #EF4444;
+  --showcase-primary-light: #F87171;
+  --showcase-gradient: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+  --showcase-accent-bg: rgba(239, 68, 68, 0.08);
+}

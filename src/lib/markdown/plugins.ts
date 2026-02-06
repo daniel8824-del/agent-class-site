@@ -1,6 +1,9 @@
 import type { Plugin } from 'unified'
-import type { Root, Paragraph, Text, Image, PhrasingContent, BlockContent } from 'mdast'
+import type { Root, Paragraph, Text, Image, Link, PhrasingContent, BlockContent } from 'mdast'
 import { visit } from 'unist-util-visit'
+
+const IMAGE_EXTENSIONS = /\.(png|jpg|jpeg|gif|webp|svg)$/i
+const PDF_EXTENSION = /\.pdf$/i
 
 // Remark plugin: Convert Obsidian ![[image.png]] to standard markdown images
 export const remarkObsidianImages: Plugin<[], Root> = () => {
@@ -33,12 +36,36 @@ export const remarkObsidianImages: Plugin<[], Root> = () => {
 
             const filename = match[1]
             const encodedFilename = encodeURIComponent(filename)
-            newChildren.push({
-              type: 'image',
-              url: `/images/${encodedFilename}`,
-              alt: filename.replace(/\.(png|jpg|jpeg|gif|webp)$/i, ''),
-              title: null,
-            } as Image)
+
+            if (PDF_EXTENSION.test(filename)) {
+              // PDF files → download link instead of image
+              newChildren.push({
+                type: 'link',
+                url: `/images/${encodedFilename}`,
+                children: [{ type: 'text', value: `${filename} 다운로드` } as Text],
+                data: {
+                  hProperties: { className: 'pdf-download-link', download: filename },
+                },
+              } as unknown as PhrasingContent)
+            } else if (IMAGE_EXTENSIONS.test(filename)) {
+              // Known image extensions → image node
+              newChildren.push({
+                type: 'image',
+                url: `/images/${encodedFilename}`,
+                alt: filename.replace(/\.(png|jpg|jpeg|gif|webp|svg)$/i, ''),
+                title: null,
+              } as Image)
+            } else {
+              // Other extensions → fallback to download link
+              newChildren.push({
+                type: 'link',
+                url: `/images/${encodedFilename}`,
+                children: [{ type: 'text', value: filename } as Text],
+                data: {
+                  hProperties: { download: filename },
+                },
+              } as unknown as PhrasingContent)
+            }
 
             lastIndex = regex.lastIndex
           }

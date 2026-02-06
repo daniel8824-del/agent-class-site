@@ -34,8 +34,9 @@ export function HtmlBlock({ html }: HtmlBlockProps) {
       'style', 'class', 'id', 'href', 'src', 'alt', 'title', 'target',
       'width', 'height', 'colspan', 'rowspan', 'viewBox', 'fill', 'stroke',
       'd', 'cx', 'cy', 'r', 'x', 'y', 'x1', 'y1', 'x2', 'y2', 'points',
+      'data-hover', 'data-type', 'data-state', 'data-animate',
     ],
-    ADD_ATTR: ['target'],
+    ADD_ATTR: ['target', 'data-hover', 'data-type', 'data-state', 'data-animate'],
   })
 
   return (

@@ -7,108 +7,123 @@ import type { ReactNode } from 'react'
 
 const calloutConfig: Record<string, {
   icon: ReactNode
-  bgClass: string
-  borderClass: string
-  titleClass: string
-  iconClass: string
+  accentColor: string
+  gradientFrom: string
+  gradientTo: string
+  bgTint: string
+  label: string
 }> = {
   quote: {
     icon: <Quote className="w-5 h-5" />,
-    bgClass: 'bg-gray-50 dark:bg-gray-900/50',
-    borderClass: 'border-l-gray-400 dark:border-l-gray-500',
-    titleClass: 'text-gray-700 dark:text-gray-300',
-    iconClass: 'text-gray-500',
+    accentColor: 'oklch(0.6 0 0)',
+    gradientFrom: 'oklch(0.6 0 0)',
+    gradientTo: 'oklch(0.5 0.02 275)',
+    bgTint: 'oklch(0.6 0 0 / 5%)',
+    label: 'Quote',
   },
   example: {
     icon: <List className="w-5 h-5" />,
-    bgClass: 'bg-purple-50 dark:bg-purple-950/30',
-    borderClass: 'border-l-purple-400 dark:border-l-purple-500',
-    titleClass: 'text-purple-700 dark:text-purple-300',
-    iconClass: 'text-purple-500',
+    accentColor: 'oklch(0.55 0.23 285)',
+    gradientFrom: 'oklch(0.55 0.23 285)',
+    gradientTo: 'oklch(0.50 0.20 300)',
+    bgTint: 'oklch(0.55 0.23 285 / 5%)',
+    label: 'Example',
   },
   success: {
     icon: <CheckCircle className="w-5 h-5" />,
-    bgClass: 'bg-green-50 dark:bg-green-950/30',
-    borderClass: 'border-l-green-400 dark:border-l-green-500',
-    titleClass: 'text-green-700 dark:text-green-300',
-    iconClass: 'text-green-500',
+    accentColor: 'oklch(0.6 0.17 160)',
+    gradientFrom: 'oklch(0.6 0.17 160)',
+    gradientTo: 'oklch(0.55 0.15 145)',
+    bgTint: 'oklch(0.6 0.17 160 / 5%)',
+    label: 'Success',
   },
   check: {
     icon: <CheckCircle className="w-5 h-5" />,
-    bgClass: 'bg-green-50 dark:bg-green-950/30',
-    borderClass: 'border-l-green-400 dark:border-l-green-500',
-    titleClass: 'text-green-700 dark:text-green-300',
-    iconClass: 'text-green-500',
+    accentColor: 'oklch(0.6 0.17 160)',
+    gradientFrom: 'oklch(0.6 0.17 160)',
+    gradientTo: 'oklch(0.55 0.15 145)',
+    bgTint: 'oklch(0.6 0.17 160 / 5%)',
+    label: 'Check',
   },
   question: {
     icon: <HelpCircle className="w-5 h-5" />,
-    bgClass: 'bg-yellow-50 dark:bg-yellow-950/30',
-    borderClass: 'border-l-yellow-400 dark:border-l-yellow-500',
-    titleClass: 'text-yellow-700 dark:text-yellow-300',
-    iconClass: 'text-yellow-500',
+    accentColor: 'oklch(0.7 0.16 80)',
+    gradientFrom: 'oklch(0.7 0.16 80)',
+    gradientTo: 'oklch(0.65 0.18 65)',
+    bgTint: 'oklch(0.7 0.16 80 / 5%)',
+    label: 'Question',
   },
   important: {
     icon: <Zap className="w-5 h-5" />,
-    bgClass: 'bg-cyan-50 dark:bg-cyan-950/30',
-    borderClass: 'border-l-cyan-400 dark:border-l-cyan-500',
-    titleClass: 'text-cyan-700 dark:text-cyan-300',
-    iconClass: 'text-cyan-500',
+    accentColor: 'oklch(0.65 0.15 195)',
+    gradientFrom: 'oklch(0.65 0.15 195)',
+    gradientTo: 'oklch(0.55 0.20 210)',
+    bgTint: 'oklch(0.65 0.15 195 / 5%)',
+    label: 'Important',
   },
   danger: {
     icon: <AlertOctagon className="w-5 h-5" />,
-    bgClass: 'bg-red-50 dark:bg-red-950/30',
-    borderClass: 'border-l-red-400 dark:border-l-red-500',
-    titleClass: 'text-red-700 dark:text-red-300',
-    iconClass: 'text-red-500',
+    accentColor: 'oklch(0.6 0.2 15)',
+    gradientFrom: 'oklch(0.6 0.2 15)',
+    gradientTo: 'oklch(0.55 0.22 5)',
+    bgTint: 'oklch(0.6 0.2 15 / 5%)',
+    label: 'Danger',
   },
   warning: {
     icon: <AlertTriangle className="w-5 h-5" />,
-    bgClass: 'bg-amber-50 dark:bg-amber-950/30',
-    borderClass: 'border-l-amber-400 dark:border-l-amber-500',
-    titleClass: 'text-amber-700 dark:text-amber-300',
-    iconClass: 'text-amber-500',
+    accentColor: 'oklch(0.7 0.16 80)',
+    gradientFrom: 'oklch(0.7 0.16 80)',
+    gradientTo: 'oklch(0.65 0.2 60)',
+    bgTint: 'oklch(0.7 0.16 80 / 5%)',
+    label: 'Warning',
   },
   note: {
     icon: <Bookmark className="w-5 h-5" />,
-    bgClass: 'bg-blue-50 dark:bg-blue-950/30',
-    borderClass: 'border-l-blue-400 dark:border-l-blue-500',
-    titleClass: 'text-blue-700 dark:text-blue-300',
-    iconClass: 'text-blue-500',
+    accentColor: 'oklch(0.55 0.23 260)',
+    gradientFrom: 'oklch(0.55 0.23 260)',
+    gradientTo: 'oklch(0.50 0.20 280)',
+    bgTint: 'oklch(0.55 0.23 260 / 5%)',
+    label: 'Note',
   },
   info: {
     icon: <Info className="w-5 h-5" />,
-    bgClass: 'bg-blue-50 dark:bg-blue-950/30',
-    borderClass: 'border-l-blue-400 dark:border-l-blue-500',
-    titleClass: 'text-blue-700 dark:text-blue-300',
-    iconClass: 'text-blue-500',
+    accentColor: 'oklch(0.55 0.23 260)',
+    gradientFrom: 'oklch(0.55 0.23 260)',
+    gradientTo: 'oklch(0.50 0.20 280)',
+    bgTint: 'oklch(0.55 0.23 260 / 5%)',
+    label: 'Info',
   },
   tldr: {
     icon: <FileText className="w-5 h-5" />,
-    bgClass: 'bg-teal-50 dark:bg-teal-950/30',
-    borderClass: 'border-l-teal-400 dark:border-l-teal-500',
-    titleClass: 'text-teal-700 dark:text-teal-300',
-    iconClass: 'text-teal-500',
+    accentColor: 'oklch(0.65 0.15 195)',
+    gradientFrom: 'oklch(0.65 0.15 195)',
+    gradientTo: 'oklch(0.55 0.18 210)',
+    bgTint: 'oklch(0.65 0.15 195 / 5%)',
+    label: 'TL;DR',
   },
   summary: {
     icon: <FileText className="w-5 h-5" />,
-    bgClass: 'bg-teal-50 dark:bg-teal-950/30',
-    borderClass: 'border-l-teal-400 dark:border-l-teal-500',
-    titleClass: 'text-teal-700 dark:text-teal-300',
-    iconClass: 'text-teal-500',
+    accentColor: 'oklch(0.65 0.15 195)',
+    gradientFrom: 'oklch(0.65 0.15 195)',
+    gradientTo: 'oklch(0.55 0.18 210)',
+    bgTint: 'oklch(0.65 0.15 195 / 5%)',
+    label: 'Summary',
   },
   tip: {
     icon: <Lightbulb className="w-5 h-5" />,
-    bgClass: 'bg-emerald-50 dark:bg-emerald-950/30',
-    borderClass: 'border-l-emerald-400 dark:border-l-emerald-500',
-    titleClass: 'text-emerald-700 dark:text-emerald-300',
-    iconClass: 'text-emerald-500',
+    accentColor: 'oklch(0.6 0.17 160)',
+    gradientFrom: 'oklch(0.6 0.17 160)',
+    gradientTo: 'oklch(0.65 0.15 145)',
+    bgTint: 'oklch(0.6 0.17 160 / 5%)',
+    label: 'Tip',
   },
   abstract: {
     icon: <Star className="w-5 h-5" />,
-    bgClass: 'bg-indigo-50 dark:bg-indigo-950/30',
-    borderClass: 'border-l-indigo-400 dark:border-l-indigo-500',
-    titleClass: 'text-indigo-700 dark:text-indigo-300',
-    iconClass: 'text-indigo-500',
+    accentColor: 'oklch(0.55 0.23 285)',
+    gradientFrom: 'oklch(0.55 0.23 285)',
+    gradientTo: 'oklch(0.50 0.20 300)',
+    bgTint: 'oklch(0.55 0.23 285 / 5%)',
+    label: 'Abstract',
   },
 }
 
@@ -122,15 +137,62 @@ interface CalloutBlockProps {
 
 export function CalloutBlock({ type, title, children }: CalloutBlockProps) {
   const config = calloutConfig[type] || defaultConfig
-  const displayTitle = title || type.charAt(0).toUpperCase() + type.slice(1)
+  const displayTitle = title || config.label || type.charAt(0).toUpperCase() + type.slice(1)
 
   return (
-    <div className={`my-4 rounded-lg border-l-4 p-4 ${config.bgClass} ${config.borderClass}`}>
-      <div className={`flex items-center gap-2 mb-2 font-semibold ${config.titleClass}`}>
-        <span className={config.iconClass}>{config.icon}</span>
-        <span>{displayTitle}</span>
+    <div
+      className="my-6 overflow-hidden relative"
+      style={{
+        borderRadius: 'var(--radius-xl)',
+        background: 'var(--glass-bg)',
+        backdropFilter: 'blur(var(--glass-blur))',
+        WebkitBackdropFilter: 'blur(var(--glass-blur))',
+        border: '1px solid var(--glass-border)',
+      }}
+    >
+      {/* Gradient left border */}
+      <div
+        className="absolute left-0 top-0 bottom-0 w-[4px]"
+        style={{
+          background: `linear-gradient(180deg, ${config.gradientFrom}, ${config.gradientTo})`,
+          borderRadius: '4px 0 0 4px',
+        }}
+      />
+
+      {/* Subtle tinted background overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: config.bgTint,
+        }}
+      />
+
+      {/* Header with icon and title */}
+      <div
+        className="relative flex items-center gap-2.5 px-5 pl-6 pt-4 pb-2"
+      >
+        <div
+          className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
+          style={{
+            background: `${config.accentColor}15`,
+            color: config.accentColor,
+          }}
+        >
+          {config.icon}
+        </div>
+        <span
+          className="text-sm font-semibold tracking-wide"
+          style={{ color: config.accentColor }}
+        >
+          {displayTitle}
+        </span>
       </div>
-      <div className="text-sm leading-relaxed text-foreground/80 [&>p:first-child]:mt-0 [&>p:last-child]:mb-0">
+
+      {/* Content area with improved typography */}
+      <div
+        className="relative px-5 pl-6 pb-4 text-sm leading-relaxed [&>p:first-child]:mt-0 [&>p:last-child]:mb-0 [&>ul]:my-2 [&>ol]:my-2 [&_a]:underline [&_a]:underline-offset-2"
+        style={{ color: 'var(--text-secondary)' }}
+      >
         {children}
       </div>
     </div>

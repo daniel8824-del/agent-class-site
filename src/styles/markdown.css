@@ -24,30 +24,241 @@
   margin: 0.5rem 0;
 }
 
-/* Colored text from Obsidian <font color> - converted to <span style="color:xxx"> by postProcessHtml.
-   Tailwind prose sets heading colors, but inline styles have higher specificity so they work naturally. */
+/* Prevent code blocks from overflowing on mobile */
+.markdown-content {
+  overflow-x: hidden;
+}
 
-/* Table responsiveness */
+.markdown-content pre {
+  overflow-x: hidden;
+  max-width: 100%;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.markdown-content :not(pre) > code {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+/* Reset prose inline-code styles on code blocks inside <pre> */
+.prose pre code {
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  font-size: inherit !important;
+  line-height: 1.45 !important;
+}
+
+/* Code block line spacing — override prose defaults */
+.code-line {
+  line-height: 1.45 !important;
+  margin: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.line-number {
+  line-height: inherit !important;
+}
+.line-content {
+  line-height: inherit !important;
+}
+
+/* Table responsiveness — clear row/column readability */
 .prose table {
   display: block;
   overflow-x: auto;
   white-space: nowrap;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
 }
 
-.prose table th,
+.prose table th {
+  white-space: normal;
+  min-width: 100px;
+  padding: 10px 14px;
+  background: var(--surface-2);
+  font-weight: 600;
+  font-size: 13px;
+  text-align: left;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--glass-border);
+}
+
 .prose table td {
   white-space: normal;
   min-width: 100px;
+  padding: 9px 14px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.prose table tr {
+  border-color: var(--glass-border);
+}
+
+.prose table tbody tr:nth-child(even) td {
+  background: var(--surface-1);
+}
+
+.prose table tbody tr:hover td {
+  background: var(--surface-2);
+}
+
+.prose table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Links — center-expanding underline animation */
+.prose a {
+  position: relative;
+  text-decoration: none;
+  color: var(--accent-secondary);
+}
+
+.prose a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: var(--accent-secondary);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.prose a:hover::after {
+  left: 0;
+  width: 100%;
+}
+
+/* Heading styles */
+.prose h2 {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+}
+
+.prose h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+/* Blockquotes — glass style with left gradient border */
+.prose blockquote {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  border-left: 4px solid;
+  border-image: var(--gradient-progress) 1;
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  padding: 1rem 1.25rem;
+  font-style: normal;
+}
+
+.prose blockquote p {
+  color: var(--text-secondary);
+}
+
+/* Images — rounded, shadow, hover zoom, dark mode invert for white-bg diagrams */
+.markdown-content img {
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+:root:not(.light) .markdown-content img {
+  background: oklch(0.92 0 0);
+  padding: 12px;
+  border: 1px solid var(--glass-border);
+}
+
+.markdown-content img:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Remove any figcaption */
+.markdown-content figcaption {
+  display: none;
 }
 
 /* Showcase HTML blocks */
 .showcase-html {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
 }
 
 .showcase-html > div {
   max-width: 100%;
+  width: 100%;
+}
+
+/* Showcase CTA button hover */
+.showcase-html button,
+.showcase-html [style*="cursor: pointer"],
+.showcase-html [style*="cursor:pointer"] {
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.showcase-html button:hover,
+.showcase-html [style*="cursor: pointer"]:hover,
+.showcase-html [style*="cursor:pointer"]:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* Showcase card hover effects */
+.showcase-html [style*="border-radius"] {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.showcase-html [style*="border-radius"]:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Keyframes for showcase animations */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* PDF download link */
+.pdf-download-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  color: var(--accent-secondary);
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pdf-download-link:hover {
+  background: var(--surface-3);
+  box-shadow: var(--shadow-sm);
+}
+
+.pdf-download-link::before {
+  content: '\1F4C4';
+  font-size: 1.25rem;
 }
 
 /* YouTube embed container */
@@ -56,7 +267,7 @@
   width: 100%;
   padding-bottom: 56.25%;
   overflow: hidden;
-  border-radius: 0.75rem;
+  border-radius: var(--radius-xl);
 }
 
 .youtube-container iframe {
@@ -66,20 +277,6 @@
   width: 100%;
   height: 100%;
   border: 0;
-}
-
-/* Image zoom animation */
-.markdown-content img {
-  transition: transform 0.2s ease;
-}
-
-.markdown-content img:hover {
-  transform: scale(1.01);
-}
-
-/* Obsidian hash tags inline */
-.markdown-content > .prose > p:first-child {
-  display: none; /* Hide the inline tags line like #에이전트 #Agent */
 }
 
 /* Smooth scrolling for anchor links */
@@ -93,7 +290,7 @@ html {
   top: 0;
   left: 0;
   height: 3px;
-  background: var(--primary);
+  background: var(--gradient-progress);
   z-index: 100;
   transition: width 0.1s ease;
 }

@@ -4,10 +4,13 @@ import { RouterProvider } from 'react-router-dom'
 import { router } from './router'
 import './index.css'
 import './styles/markdown.css'
+import './styles/showcase-themes.css'
 
-// Initialize dark mode
+// Initialize theme — dark by default
 const savedTheme = localStorage.getItem('theme')
-if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+if (savedTheme === 'light') {
+  document.documentElement.classList.add('light')
+} else {
   document.documentElement.classList.add('dark')
 }
 
