@@ -24,7 +24,7 @@ export function HeroSection() {
             repeat: Infinity,
             ease: 'easeInOut'
           }}
-          className="absolute -top-[10%] -right-[5%] w-[600px] h-[600px] rounded-full"
+          className="absolute -top-[10%] -right-[5%] w-[250px] h-[250px] md:w-[600px] md:h-[600px] rounded-full"
           style={{
             background: 'radial-gradient(circle, rgba(106,37,244,0.3), transparent 70%)',
             filter: 'blur(80px)'
@@ -43,7 +43,7 @@ export function HeroSection() {
             ease: 'easeInOut',
             delay: 2
           }}
-          className="absolute -bottom-[8%] -left-[5%] w-[500px] h-[500px] rounded-full"
+          className="absolute -bottom-[8%] -left-[5%] w-[200px] h-[200px] md:w-[500px] md:h-[500px] rounded-full"
           style={{
             background: 'radial-gradient(circle, rgba(0,240,255,0.2), transparent 70%)',
             filter: 'blur(100px)'
@@ -68,7 +68,7 @@ export function HeroSection() {
           }}
           className="flex flex-wrap justify-center gap-x-[0.35em] mb-6"
           style={{
-            fontSize: 'var(--text-display)',
+            fontSize: 'clamp(1.75rem, 5vw, 3.5rem)',
             fontFamily: 'var(--font-display)',
             fontWeight: 800,
             letterSpacing: '-0.03em',
@@ -105,7 +105,7 @@ export function HeroSection() {
           transition={{ delay: 0.3, duration: 0.5, ease: appleEase }}
           viewport={{ once: true }}
           style={{
-            fontSize: '20px',
+            fontSize: 'clamp(14px, 3.5vw, 20px)',
             fontWeight: 500,
             color: 'var(--text-secondary)',
             letterSpacing: '0.05em',

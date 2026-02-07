@@ -119,7 +119,7 @@ export function CurriculumGrid() {
           <h2
             className="gradient-text mb-4"
             style={{
-              fontSize: 'var(--text-display)',
+              fontSize: 'clamp(1.75rem, 5vw, 3.5rem)',
               fontFamily: 'var(--font-display)',
               fontWeight: 700,
               lineHeight: 1.1,
@@ -156,7 +156,7 @@ export function CurriculumGrid() {
                   className="block h-full group"
                 >
                   <motion.div
-                    className="relative h-full overflow-hidden rounded-2xl p-6 md:p-7 flex flex-col glass-card"
+                    className="relative h-full overflow-hidden rounded-2xl p-4 sm:p-6 md:p-7 flex flex-col glass-card"
                     whileHover={{
                       y: -4,
                       transition: { type: 'spring', stiffness: 400, damping: 30 },

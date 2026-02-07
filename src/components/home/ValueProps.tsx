@@ -71,7 +71,7 @@ export function ValueProps() {
           <h2
             className="gradient-text mb-4"
             style={{
-              fontSize: 'var(--text-display)',
+              fontSize: 'clamp(1.75rem, 5vw, 3.5rem)',
               fontFamily: 'var(--font-display)',
               fontWeight: 700,
               lineHeight: 1.1,
@@ -101,7 +101,7 @@ export function ValueProps() {
               <motion.div
                 key={value.title}
                 variants={staggerItem}
-                className="glass-card relative p-8 flex flex-col items-center text-center group"
+                className="glass-card relative p-5 sm:p-6 md:p-8 flex flex-col items-center text-center group"
               >
                 {/* Icon */}
                 <span className="text-5xl mb-6 block">{value.icon}</span>
@@ -110,7 +110,7 @@ export function ValueProps() {
                 <div
                   className="gradient-text mb-2"
                   style={{
-                    fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+                    fontSize: 'clamp(2rem, 5vw, 4rem)',
                     fontFamily: 'var(--font-display)',
                     fontWeight: 800,
                     lineHeight: 1,

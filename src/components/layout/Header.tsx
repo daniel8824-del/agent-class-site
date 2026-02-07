@@ -113,7 +113,7 @@ export function Header({ onMenuClick, onSearchClick }: HeaderProps) {
         className="mx-auto flex items-center justify-between h-full"
         style={{
           maxWidth: 'var(--max-w-wide)',
-          padding: '0 32px',
+          padding: '0 clamp(16px, 4vw, 32px)',
         }}
       >
         {/* Left: Logo + Nav links */}

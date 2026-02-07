@@ -26,7 +26,7 @@ export function FinalCTA() {
           transition={{ delay: 0.2, duration: 0.7, ease: appleEase }}
           className="gradient-text mb-6 text-center"
           style={{
-            fontSize: 'var(--text-display)',
+            fontSize: 'clamp(1.75rem, 5vw, 3.5rem)',
             fontFamily: 'var(--font-display)',
             fontWeight: 700,
             lineHeight: 1.1,

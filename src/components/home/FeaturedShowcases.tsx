@@ -74,7 +74,7 @@ function LargeFeaturedCard({ project }: { project: Project }) {
       <Link to={`/showcase/${project.slug}`} className="block h-full">
         <div
           className="glass-card group relative overflow-hidden h-full flex flex-col"
-          style={{ padding: '36px', minHeight: '300px' }}
+          style={{ padding: 'clamp(20px, 4vw, 36px)', minHeight: 'clamp(200px, 40vw, 300px)' }}
         >
           {/* Gradient accent stripe at top */}
           <div
@@ -144,7 +144,7 @@ function SmallCard({ project }: { project: Project }) {
       <Link to={`/showcase/${project.slug}`} className="block h-full">
         <div
           className="glass-card group relative overflow-hidden flex flex-col"
-          style={{ padding: '24px', minHeight: '145px' }}
+          style={{ padding: 'clamp(16px, 3vw, 24px)', minHeight: 'clamp(120px, 30vw, 145px)' }}
         >
           {/* Gradient accent stripe */}
           <div
@@ -208,7 +208,7 @@ export function FeaturedShowcases() {
           <h2
             className="gradient-text mb-4"
             style={{
-              fontSize: 'var(--text-display)',
+              fontSize: 'clamp(1.75rem, 5vw, 3.5rem)',
               fontFamily: 'var(--font-display)',
               fontWeight: 700,
               lineHeight: 1.1,

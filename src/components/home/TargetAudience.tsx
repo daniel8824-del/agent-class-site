@@ -52,7 +52,7 @@ export function TargetAudience() {
           <h2
             className="gradient-text mb-4"
             style={{
-              fontSize: 'var(--text-display)',
+              fontSize: 'clamp(1.75rem, 5vw, 3.5rem)',
               fontFamily: 'var(--font-display)',
               fontWeight: 700,
               lineHeight: 1.1,
@@ -79,7 +79,7 @@ export function TargetAudience() {
               key={persona.title}
               variants={staggerItem}
               className="glass-card text-center flex flex-col"
-              style={{ padding: '28px' }}
+              style={{ padding: 'clamp(16px, 4vw, 28px)' }}
             >
               {/* Icon */}
               <span className="text-4xl mb-4 block">{persona.icon}</span>

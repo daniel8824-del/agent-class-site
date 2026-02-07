@@ -37,7 +37,7 @@ export function AgentShowcaseGrid() {
   }, [activeCategory])
 
   return (
-    <div className="relative px-6 md:px-12 py-16 md:py-24" style={{ maxWidth: 'var(--max-w-content)', margin: '0 auto' }}>
+    <div className="relative overflow-hidden px-6 md:px-12 py-16 md:py-24" style={{ maxWidth: 'var(--max-w-content)', margin: '0 auto' }}>
       {/* Background ambient glow orbs */}
       <div
         className="pointer-events-none absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[200px] opacity-[0.04]"

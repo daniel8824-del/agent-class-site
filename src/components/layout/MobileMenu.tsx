@@ -149,7 +149,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
 
             {/* Menu content */}
             <motion.div
-              className="flex-1 overflow-y-auto px-5 py-6 scrollbar-thin"
+              className="flex-1 overflow-y-auto px-5 py-6 scrollbar-thin [-webkit-overflow-scrolling:touch]"
               variants={staggerMenu}
               initial="hidden"
               animate="visible"
@@ -180,7 +180,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
                     >
                       <Link
                         to={`/chapters/${ch.slug}`}
-                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200"
+                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 min-h-[44px]"
                         style={{
                           color:
                             location.pathname === `/chapters/${ch.slug}`
@@ -250,7 +250,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
                     >
                       <Link
                         to={`/showcase/${sc.slug}`}
-                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200"
+                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 min-h-[44px]"
                         style={{
                           color:
                             location.pathname === `/showcase/${sc.slug}`

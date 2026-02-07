@@ -49,14 +49,14 @@ export function FAQSection() {
       style={{ background: 'var(--surface-1)' }}
     >
       <div className="max-w-[var(--max-w-content)] mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-12 md:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-6 md:gap-16">
           {/* Left Column: Sticky Title */}
           <motion.div
             className="md:sticky md:top-8 md:self-start md:pt-6"
             {...fadeInLeft}
           >
             <h2
-              className="gradient-text text-3xl md:text-4xl mb-4"
+              className="gradient-text text-2xl sm:text-3xl md:text-4xl mb-4"
               style={{
                 fontFamily: 'var(--font-display)',
                 fontWeight: 700,

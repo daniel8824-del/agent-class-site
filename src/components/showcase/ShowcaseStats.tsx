@@ -96,7 +96,7 @@ export function ShowcaseStats({ stats, theme }: ShowcaseStatsProps) {
             <motion.div
               key={stat.label}
               variants={staggerItem}
-              className="relative p-7 rounded-2xl text-center overflow-hidden group"
+              className="relative p-4 sm:p-5 md:p-7 rounded-2xl text-center overflow-hidden group"
               style={{
                 background: 'var(--glass-bg)',
                 backdropFilter: 'blur(12px)',
@@ -133,7 +133,7 @@ export function ShowcaseStats({ stats, theme }: ShowcaseStatsProps) {
                     ],
                   } : {}}
                   transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut', delay: idx * 0.3 }}
-                  className="text-4xl md:text-5xl font-extrabold mb-3 tracking-tight bg-clip-text text-transparent"
+                  className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-3 tracking-tight bg-clip-text text-transparent"
                   style={{ backgroundImage: theme.gradient }}
                 >
                   <AnimatedNumber value={stat.value} inView={inView} />

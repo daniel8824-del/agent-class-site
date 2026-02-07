@@ -65,7 +65,7 @@ export function LearningOutcomes() {
           <h2
             className="gradient-text mb-4"
             style={{
-              fontSize: 'var(--text-display)',
+              fontSize: 'clamp(1.75rem, 5vw, 3.5rem)',
               fontFamily: 'var(--font-display)',
               fontWeight: 700,
               lineHeight: 1.1,
@@ -96,7 +96,7 @@ export function LearningOutcomes() {
             >
               {/* Before side (darker) */}
               <div
-                className="p-8 flex flex-col justify-center"
+                className="p-5 sm:p-6 md:p-8 flex flex-col justify-center"
                 style={{ background: 'var(--surface-0)' }}
               >
                 <p
@@ -120,7 +120,7 @@ export function LearningOutcomes() {
 
               {/* After side (gradient overlay with violet tint) */}
               <div
-                className="p-8 flex flex-col justify-center relative overflow-hidden"
+                className="p-5 sm:p-6 md:p-8 flex flex-col justify-center relative overflow-hidden"
                 style={{
                   background: 'linear-gradient(135deg, var(--surface-2), var(--surface-1))',
                 }}
@@ -169,7 +169,7 @@ export function LearningOutcomes() {
 
         {/* Summary stats row */}
         <motion.div
-          className="grid grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

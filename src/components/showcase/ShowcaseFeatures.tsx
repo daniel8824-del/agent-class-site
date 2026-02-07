@@ -97,7 +97,7 @@ function GlassFeatureCard({ feature, theme }: { feature: ShowcaseFeature; theme:
       onMouseLeave={handleMouseLeave}
       whileHover={{ y: -8 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      className="group relative p-8 rounded-2xl overflow-hidden h-full"
+      className="group relative p-5 sm:p-6 md:p-8 rounded-2xl overflow-hidden h-full"
       style={{
         perspective: 600,
         background: 'var(--glass-bg)',

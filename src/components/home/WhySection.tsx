@@ -59,7 +59,7 @@ export function WhySection() {
           <h2
             className="gradient-text mb-4"
             style={{
-              fontSize: 'var(--text-display)',
+              fontSize: 'clamp(1.75rem, 5vw, 3.5rem)',
               fontFamily: 'var(--font-display)',
               fontWeight: 700,
               lineHeight: 1.1,
@@ -85,7 +85,7 @@ export function WhySection() {
             <motion.div
               key={problem.title}
               variants={staggerItem}
-              className="glass-card p-8 text-center"
+              className="glass-card p-4 sm:p-6 md:p-8 text-center"
             >
               <span className="text-4xl mb-4 block">{problem.icon}</span>
               <h3
@@ -136,7 +136,7 @@ export function WhySection() {
             <motion.div
               key={solution.title}
               variants={staggerItem}
-              className="glass-card p-8 text-center"
+              className="glass-card p-4 sm:p-6 md:p-8 text-center"
               style={{
                 background: 'rgba(106,37,244,0.04)',
                 borderColor: 'rgba(106,37,244,0.12)',

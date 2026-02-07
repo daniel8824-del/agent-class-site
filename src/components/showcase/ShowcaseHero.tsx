@@ -34,10 +34,11 @@ export function ShowcaseHero({
     target: ref,
     offset: ['start start', 'end start'],
   })
-  // Multi-layer parallax
-  const bgY = useTransform(scrollYProgress, [0, 1], [0, 150])
-  const titleY = useTransform(scrollYProgress, [0, 1], [0, 40])
-  const iconY = useTransform(scrollYProgress, [0, 1], [0, 60])
+  // Multi-layer parallax — reduced on mobile for performance
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 50 : 150])
+  const titleY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 15 : 40])
+  const iconY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 20 : 60])
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
 
   // 3D tilt on icon
@@ -109,27 +110,27 @@ export function ShowcaseHero({
       <motion.div
         animate={{ scale: [1, 1.3, 1], opacity: [0.12, 0.22, 0.12], x: [0, 30, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute -top-20 -right-20 w-[800px] h-[800px] rounded-full blur-[180px]"
+        className="absolute -top-20 -right-20 w-[300px] h-[300px] md:w-[800px] md:h-[800px] rounded-full blur-[100px] md:blur-[180px]"
         style={{ background: theme.primary, y: bgY }}
       />
       <motion.div
         animate={{ scale: [1.1, 0.9, 1.1], opacity: [0.1, 0.2, 0.1], x: [0, -20, 0] }}
         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-        className="absolute -bottom-20 -left-20 w-[600px] h-[600px] rounded-full blur-[150px]"
+        className="absolute -bottom-20 -left-20 w-[250px] h-[250px] md:w-[600px] md:h-[600px] rounded-full blur-[80px] md:blur-[150px]"
         style={{ background: theme.primaryLight, y: bgY }}
       />
       {/* Third orb for richer depth -- larger, more diffuse */}
       <motion.div
         animate={{ scale: [1, 1.2, 1], opacity: [0.06, 0.14, 0.06], y: [0, -30, 0] }}
         transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
-        className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full blur-[160px]"
+        className="absolute top-1/3 left-1/4 w-[200px] h-[200px] md:w-[500px] md:h-[500px] rounded-full blur-[80px] md:blur-[160px]"
         style={{ background: theme.primaryLight, y: bgY }}
       />
       {/* Fourth orb -- accent color for depth variation */}
       <motion.div
         animate={{ scale: [0.9, 1.1, 0.9], opacity: [0.05, 0.1, 0.05] }}
         transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut', delay: 6 }}
-        className="absolute bottom-1/4 right-1/3 w-[350px] h-[350px] rounded-full blur-[140px]"
+        className="absolute bottom-1/4 right-1/3 w-[150px] h-[150px] md:w-[350px] md:h-[350px] rounded-full blur-[70px] md:blur-[140px]"
         style={{ background: `color-mix(in srgb, ${theme.primary} 50%, ${theme.primaryLight})` }}
       />
 

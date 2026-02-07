@@ -132,9 +132,9 @@ export function ChapterPage() {
 
         {/* Subtle watermark number */}
         <div
-          className="absolute right-8 md:right-16 top-1/2 -translate-y-1/2 select-none pointer-events-none"
+          className="absolute right-4 md:right-8 lg:right-16 top-1/2 -translate-y-1/2 select-none pointer-events-none"
           style={{
-            fontSize: 'clamp(5rem, 10vw, 8rem)',
+            fontSize: 'clamp(3rem, 8vw, 8rem)',
             fontWeight: 800,
             lineHeight: 1,
             color: colors.from,
@@ -145,7 +145,7 @@ export function ChapterPage() {
           {String(chapter.id).padStart(2, '0')}
         </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-12 py-24 md:py-36">
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 md:px-12 py-12 sm:py-16 md:py-24 lg:py-36">
           <motion.div
             initial={{ opacity: 0, y: 24, filter: 'blur(6px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -442,7 +442,7 @@ export function ChapterPage() {
             exit={{ opacity: 0, scale: 0.8, y: 10 }}
             transition={{ type: 'spring', stiffness: 400, damping: 25 }}
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="fixed bottom-8 right-8 z-30 w-11 h-11 rounded-full flex items-center justify-center transition-colors"
+            className="fixed bottom-6 right-4 sm:bottom-8 sm:right-8 z-30 w-11 h-11 rounded-full flex items-center justify-center transition-colors"
             style={{
               background: 'var(--glass-bg)',
               backdropFilter: 'blur(16px)',

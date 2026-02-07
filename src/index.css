@@ -346,6 +346,7 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', sans-serif;
+    overflow-x: clip;
   }
 }
 
@@ -500,7 +501,7 @@
   position: absolute;
   top: -10px;
   right: 16px;
-  font-size: 120px;
+  font-size: clamp(64px, 15vw, 120px);
   font-weight: 800;
   color: oklch(1 0 0 / 6%);
   line-height: 1;
@@ -567,7 +568,7 @@
   -webkit-backdrop-filter: blur(40px) saturate(1.5);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-xl);
-  padding: 32px;
+  padding: clamp(16px, 4vw, 32px);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--gap-grid);
@@ -787,8 +788,17 @@
 }
 @media (max-width: 480px) {
   :root {
-    --text-hero: 36px;
-    --text-display: 32px;
+    --text-hero: 2rem;
+    --text-display: 2rem;
+    --text-heading-1: 1.75rem;
+    --text-heading-2: 1.5rem;
+    --text-heading-3: 1.25rem;
+    --space-section: 60px;
+    --space-section-sm: 48px;
+    --gap-grid: 16px;
+    --gap-nav-items: 16px;
+    --pad-card: 16px;
+    --pad-card-lg: 20px;
   }
 }
 

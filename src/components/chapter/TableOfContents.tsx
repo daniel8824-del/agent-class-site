@@ -30,7 +30,7 @@ export function TableOfContents({ headings, activeId }: TableOfContentsProps) {
       {/* Collapse/expand toggle */}
       <button
         onClick={() => setCollapsed(!collapsed)}
-        className="absolute -left-4 top-4 z-10 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
+        className="absolute -left-4 top-4 z-10 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
         style={{
           background: 'var(--surface-2)',
           border: '1px solid var(--glass-border)',

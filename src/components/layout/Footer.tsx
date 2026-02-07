@@ -171,12 +171,12 @@ export function Footer() {
         }}
       >
         <div
-          className="mx-auto px-6 pt-16 pb-12"
+          className="mx-auto px-4 sm:px-6 pt-10 sm:pt-16 pb-8 sm:pb-12"
           style={{ maxWidth: 'var(--max-w-wide)' }}
         >
           {/* 4-column grid */}
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-[var(--gap-footer-columns)]"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-[var(--gap-footer-columns)]"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
